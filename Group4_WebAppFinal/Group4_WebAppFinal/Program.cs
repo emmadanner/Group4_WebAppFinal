@@ -1,8 +1,15 @@
 using Group4_WebAppFinal.Client.Pages;
 using Group4_WebAppFinal.Components;
+using Group4_WebAppFinal.Controllers.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.FluentUI.AspNetCore.Components;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDbContext>( options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PokemonTeamBuilder"));
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
