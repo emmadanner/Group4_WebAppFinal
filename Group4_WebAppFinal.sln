@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group4_WebAppFinal", "Group4_WebAppFinal\Group4_WebAppFinal\Group4_WebAppFinal.csproj", "{842F67E8-6E1E-48D7-9234-6CDF650529E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group4_WebAppFinal", "Group4_WebAppFinal\Group4_WebAppFinal\Group4_WebAppFinal.csproj", "{842F67E8-6E1E-48D7-9234-6CDF650529E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group4_WebAppFinal.Client", "Group4_WebAppFinal\Group4_WebAppFinal.Client\Group4_WebAppFinal.Client.csproj", "{28A9EB95-1C62-48E2-8AF5-CE5691308433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group4_WebAppFinal.Client", "Group4_WebAppFinal\Group4_WebAppFinal.Client\Group4_WebAppFinal.Client.csproj", "{28A9EB95-1C62-48E2-8AF5-CE5691308433}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
