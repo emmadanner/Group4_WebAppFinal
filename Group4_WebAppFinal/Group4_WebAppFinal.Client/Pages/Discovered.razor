@@ -1,5 +1,6 @@
 ﻿@page "/discovered"
 
+
 <h3>Discovered</h3>
 
 
@@ -9,6 +10,30 @@
     <p>Required fields are marked with a '*'</p>
     <FluentCard>
         <p>Pokemon Name: <FluentTextField @bind-Value=value1 Required="true"></FluentTextField></p>
+        <p>Dex Number <FluentTextField @bind-Value=value3 Required="true"></FluentTextField></p>
+        <p>Type 1:
+            <FluentSelect Value=@("a string value") TOption="string" Required="true">
+                <FluentOption>
+                    Pick a Primary Type
+                </FluentOption>
+            </FluentSelect>
+        </p>
+        <p>Type 2:
+            <FluentSelect Value=@("a string value") TOption="string" Required="false">
+                <FluentOption Disabled="true">
+                    Pick a Second Type
+                </FluentOption>
+            </FluentSelect>
+        </p>
+        <p>
+            Generation:
+            <FluentSelect Value=@("a string value") TOption="string" Required="false">
+                <FluentOption>
+                    Pick a Generation
+                </FluentOption>
+            </FluentSelect>
+        </p>
+        
     </FluentCard>
     
     
@@ -17,5 +42,5 @@
 </FluentCard>
 
 @code {
-    string? value1;
+    string? value1, value2, value3;
 }
