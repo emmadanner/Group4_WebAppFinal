@@ -1,0 +1,21 @@
+﻿@page "/discovered"
+
+<h3>Discovered</h3>
+
+
+
+<FluentCard Height="auto">
+    <h4>Input your Discovered Pokémon Here!</h4>
+    <p>Required fields are marked with a '*'</p>
+    <FluentCard>
+        <p>Pokemon Name: <FluentTextField @bind-Value=value1 Required="true"></FluentTextField></p>
+    </FluentCard>
+    
+    
+    <FluentButton Appearance="Appearance.Accent">Confirm</FluentButton>
+    
+</FluentCard>
+
+@code {
+    string? value1;
+}
