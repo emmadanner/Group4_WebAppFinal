@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group4_WebAppFinal", "Group
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group4_WebAppFinal.Client", "Group4_WebAppFinal\Group4_WebAppFinal.Client\Group4_WebAppFinal.Client.csproj", "{28A9EB95-1C62-48E2-8AF5-CE5691308433}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group4_WebAppFinal.Model", "Group4_WebAppFinal.Model\Group4_WebAppFinal.Model.csproj", "{DAB0E724-A7C0-4494-A6AE-BE27853E4698}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{28A9EB95-1C62-48E2-8AF5-CE5691308433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28A9EB95-1C62-48E2-8AF5-CE5691308433}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28A9EB95-1C62-48E2-8AF5-CE5691308433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAB0E724-A7C0-4494-A6AE-BE27853E4698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAB0E724-A7C0-4494-A6AE-BE27853E4698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAB0E724-A7C0-4494-A6AE-BE27853E4698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAB0E724-A7C0-4494-A6AE-BE27853E4698}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

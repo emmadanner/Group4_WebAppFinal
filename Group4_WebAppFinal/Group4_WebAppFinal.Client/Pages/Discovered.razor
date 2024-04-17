@@ -1,4 +1,6 @@
 ﻿@page "/discovered"
+@using Group4_WebAppFinal.Model
+@inject HttpClient http
 
 
 <h3>Discovered</h3>
@@ -41,6 +43,24 @@
     
 </FluentCard>
 
+<h3>Your Pokemon</h3>
+<FluentDataGrid Items="@pokemons">
+    <PropertyColumn Property="@(p => p.PokemonName)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.DexNumber)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Type1)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Type2)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Generation)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.TeamNum)" Sortable="true" />
+</FluentDataGrid>
+
 @code {
     string? value1, value2, value3;
+
+    IQueryable<PokemonViewModel> pokemons { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        pokemons = (await http.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
+    }
+
 }

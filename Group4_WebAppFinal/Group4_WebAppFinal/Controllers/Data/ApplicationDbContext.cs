@@ -1,5 +1,7 @@
 ﻿using Group4_WebAppFinal.Controllers.Entities;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Group4_WebAppFinal.Controllers.Data
 {
@@ -15,9 +17,12 @@ namespace Group4_WebAppFinal.Controllers.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PokemonType>().HasData(
+            
                 
-                new PokemonType { TypeName = "Normal"},
+            
+            modelBuilder.Entity<PokemonType>().HasData(
+
+                new PokemonType { TypeName = "Normal" },
                 new PokemonType { TypeName = "Fire" },
                 new PokemonType { TypeName = "Water" },
                 new PokemonType { TypeName = "Electric" },
@@ -49,7 +54,15 @@ namespace Group4_WebAppFinal.Controllers.Data
                 new Generation { GenerationId = 8, GenGames = "Sword, Shield, Brilliant Diamond, Shining Pearl" },
                 new Generation { GenerationId = 9, GenGames = "Scarlet, Violet" }
                 );
+            
+
+            modelBuilder.Entity<Pokemon>().HasData(
+                new Pokemon { PokemonName = "Bulbasaur", DexNumber = 001, Type1 = "Grass", Type2 = "Poison", Generation = 1, TeamNum = 1},
+                new Pokemon { PokemonName = "Lileep", DexNumber = 345, Type1 = "Rock", Type2 = "Grass", Generation = 3 }
+                );
         }
+
+
 
 
     }
