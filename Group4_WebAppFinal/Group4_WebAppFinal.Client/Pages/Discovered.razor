@@ -1,5 +1,6 @@
 ﻿@page "/discovered"
 @using Group4_WebAppFinal.Model
+@using System.Net.Http
 @inject HttpClient http
 
 
@@ -44,7 +45,7 @@
 </FluentCard>
 
 <h3>Your Pokemon</h3>
-<FluentDataGrid Items="@pokemons">
+<FluentDataGrid Items="@pokemons" AdditionalAttributes="@Attributes">
     <PropertyColumn Property="@(p => p.PokemonName)" Sortable="true" />
     <PropertyColumn Property="@(p => p.DexNumber)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Type1)" Sortable="true" />
@@ -63,4 +64,8 @@
         pokemons = (await http.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
     }
 
+    Dictionary<string, object> Attributes { get; set; } = new()
+    {
+        {"width", "200px" }
+    };
 }

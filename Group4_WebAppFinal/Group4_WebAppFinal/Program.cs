@@ -15,11 +15,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PokemonTeamBuilder"));
 });
 
+
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 builder.Services.AddFluentUIComponents();
+
+builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri("https://localhost:7294") });
 
 var app = builder.Build();
 
