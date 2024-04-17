@@ -1,0 +1,47 @@
+@MinimalApiHost = https://localhost:7294
+
+###
+#return all pokemon records
+GET {{MinimalApiHost}}/api/pokemon
+
+###
+
+GET {{MinimalApiHost}}/api/pokemon/Bulbasaur
+
+###
+
+PUT {{MinimalApiHost}}/api/pokemon/Lileep
+Content-Type: application/json
+
+{
+  "pokemonName": "Lileep",
+  "dexNumber": 345,
+  "type1": "Rock",
+  "type2": "Grass",
+  "pokemonTypes": [],
+  "generation": 3,
+  "generations": [],
+  "teamNum": null,
+  "team": 1
+}
+
+###
+
+POST {{MinimalApiHost}}/api/pokemon
+Content-Type: application/json
+
+{
+  "pokemonName": "Omastar",
+  "dexNumber": 139,
+  "type1": "Rock",
+  "type2": "Water",
+  "pokemonTypes": [],
+  "generation": 1,
+  "generations": [],
+  "teamNum": null,
+  "team": null
+}
+
+###
+
+DELETE {{MinimalApiHost}}/api/pokemon/Omastar
