@@ -18,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 // Add services to the container.
+builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri("https://localhost:7294") });
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
