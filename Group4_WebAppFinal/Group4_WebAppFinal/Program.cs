@@ -24,7 +24,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 builder.Services.AddFluentUIComponents();
 
-builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri("https://localhost:7294") });
+/*builder.Services.AddHttpClient<HttpClient>();*/
 
 var app = builder.Build();
 
@@ -142,6 +142,64 @@ app.MapDelete("/api/pokemon/{PokemonName}", async (ApplicationDbContext dbContex
     dbContext.Pokemons.Remove(pokemon);
     await dbContext.SaveChangesAsync();
     return Results.Ok();
+});
+
+app.MapGet("/api/item", async (ApplicationDbContext dbContext) =>
+{
+    var items = await dbContext.Bags.ToListAsync();
+
+    List<ItemViewModel> itemViewModels = new();
+
+    foreach (var item in items)
+    {
+        itemViewModels.Add(new ItemViewModel
+        {
+            ItemName = item.ItemName,
+            ItemQuantity = item.ItemQuantity,
+            ItemType = item.ItemType,
+            Description = item.Description
+
+        });
+    }
+
+    return Results.Ok(items);
+});
+
+app.MapGet("/api/types", async (ApplicationDbContext dbContext) =>
+{
+    var typings = await dbContext.PokemonTypes.ToListAsync();
+
+    List<TypeViewModel> typeViewModels = new();
+
+    foreach (var typing in typings)
+    {
+        typeViewModels.Add(new TypeViewModel
+        {
+            TypeName = typing.TypeName
+
+        });
+    }
+
+    return Results.Ok(typings);
+});
+
+app.MapGet("/api/generations", async (ApplicationDbContext dbContext) =>
+{
+    var generations = await dbContext.Generations.ToListAsync();
+
+    List<GenerationTypeModel> generationTypeModels = new();
+
+    foreach (var generation in generations)
+    {
+        generationTypeModels.Add(new GenerationTypeModel
+        {
+            GenerationId = generation.GenerationId,
+            GenGames = generation.GenGames
+
+        });
+    }
+
+    return Results.Ok(generations);
 });
 
 app.Run();

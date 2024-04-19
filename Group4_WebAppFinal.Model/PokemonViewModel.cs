@@ -10,17 +10,17 @@ namespace Group4_WebAppFinal.Model
     public class PokemonViewModel
     {
         [Key]
-        public required string PokemonName { get; set; }
+        public  string PokemonName { get; set; }
 
         public int DexNumber { get; set; }
         [MaxLength(100)]
-        public required string Type1 { get; set; }
+        public  string Type1 { get; set; }
 
         [MaxLength(100)]
         public string? Type2 { get; set; }
 
         public ICollection<TypeViewModel> PokemonTypes { get; set; } = new List<TypeViewModel>();
-        public required int Generation { get; set; }
+        public  int Generation { get; set; }
 
         public int? TeamNum { get; set; }
 

@@ -1,48 +1,12 @@
 ﻿@page "/discovered"
 @using Group4_WebAppFinal.Model
 @using System.Net.Http
-@inject HttpClient http
+@inject HttpClient httpDiscover
+@inject NavigationManager Navigation
 
 
 <h3>Discovered</h3>
-
-
-
-<FluentCard Height="auto">
-    <h4>Input your Discovered Pokémon Here!</h4>
-    <p>Required fields are marked with a '*'</p>
-    <FluentCard>
-        <p>Pokemon Name: <FluentTextField @bind-Value=value1 Required="true"></FluentTextField></p>
-        <p>Dex Number <FluentTextField @bind-Value=value3 Required="true"></FluentTextField></p>
-        <p>Type 1:
-            <FluentSelect Value=@("a string value") TOption="string" Required="true">
-                <FluentOption>
-                    Pick a Primary Type
-                </FluentOption>
-            </FluentSelect>
-        </p>
-        <p>Type 2:
-            <FluentSelect Value=@("a string value") TOption="string" Required="false">
-                <FluentOption Disabled="true">
-                    Pick a Second Type
-                </FluentOption>
-            </FluentSelect>
-        </p>
-        <p>
-            Generation:
-            <FluentSelect Value=@("a string value") TOption="string" Required="false">
-                <FluentOption>
-                    Pick a Generation
-                </FluentOption>
-            </FluentSelect>
-        </p>
-        
-    </FluentCard>
-    
-    
-    <FluentButton Appearance="Appearance.Accent">Confirm</FluentButton>
-    
-</FluentCard>
+<FluentButton OnClick="@(() => Navigation.NavigateTo($"discovered/new"))">Add New</FluentButton>
 
 <h3>Your Pokemon</h3>
 <FluentDataGrid Items="@pokemons" AdditionalAttributes="@Attributes">
@@ -52,16 +16,23 @@
     <PropertyColumn Property="@(p => p.Type2)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Generation)" Sortable="true" />
     <PropertyColumn Property="@(p => p.TeamNum)" Sortable="true" />
+    <TemplateColumn>
+        <FluentButton OnClick="@(() => Navigation.NavigateTo($"discovered/release/{context.PokemonName}"))">Release</FluentButton>
+    </TemplateColumn>
 </FluentDataGrid>
 
 @code {
     string? value1, value2, value3;
 
+
+
     IQueryable<PokemonViewModel> pokemons { get; set; }
+
+    
 
     protected override async Task OnParametersSetAsync()
     {
-        pokemons = (await http.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
+        pokemons = (await httpDiscover.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
     }
 
     Dictionary<string, object> Attributes { get; set; } = new()

@@ -10,18 +10,18 @@ namespace Group4_WebAppFinal.Controllers.Entities
     public class Pokemon 
     {
         [Key]
-        public required string PokemonName { get; set; }
+        public  string PokemonName { get; set; }
         
         public int DexNumber { get; set; }
         [MaxLength(100)]
-        public required string Type1 { get; set; }
+        public  string Type1 { get; set; }
         
         [MaxLength(100)]
         public string? Type2 { get; set; }
         
         public ICollection<PokemonType> PokemonTypes { get; set; } = new List<PokemonType>();
 
-        public required int Generation { get; set; }
+        public  int Generation { get; set; }
 
         public ICollection<Generation> Generations { get; set; } = new List<Generation>();
 
