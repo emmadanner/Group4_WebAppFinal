@@ -45,3 +45,14 @@ Content-Type: application/json
 ###
 
 DELETE {{MinimalApiHost}}/api/pokemon/Omastar
+
+###
+GET {{MinimalApiHost}}/api/item
+
+###
+GET {{MinimalApiHost}}/api/types
+
+###
+
+GET {{MinimalApiHost}}/api/generations
+

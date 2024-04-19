@@ -16,7 +16,10 @@ namespace Group4_WebAppFinal.Model
         public required string ItemName { get; set; }
 
         [MaxLength(100)]
-        public string? ItemQuantity { get; set; }
+        public string? ItemType { get; set; }
+
+        [MaxLength(100)]
+        public int? ItemQuantity { get; set; }
         public required string Description { get; set; }
     }
 }

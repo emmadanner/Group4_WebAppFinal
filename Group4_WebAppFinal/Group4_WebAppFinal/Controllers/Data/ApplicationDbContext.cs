@@ -18,10 +18,16 @@ namespace Group4_WebAppFinal.Controllers.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
+            modelBuilder.Entity<Bag>().HasData(
+                
+                new Bag { ItemName = "Potion", ItemQuantity = 1, ItemType = "Consumable", Description = "Restores 10HP"}
+
+                );
                 
             
             modelBuilder.Entity<PokemonType>().HasData(
 
+                new PokemonType { TypeName = "None"},
                 new PokemonType { TypeName = "Normal" },
                 new PokemonType { TypeName = "Fire" },
                 new PokemonType { TypeName = "Water" },
