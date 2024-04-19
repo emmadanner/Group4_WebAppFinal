@@ -8,6 +8,7 @@ namespace Group4_WebAppFinal.Controllers.Entities
     {
         [Key]
         [MaxLength(100)]
-        public string TypeName { get; set; }
+        public required string TypeName { get; set; }
+        
     }
 }

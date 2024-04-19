@@ -1,0 +1,60 @@
+﻿@page "/discovered/new"
+@using Group4_WebAppFinal.Model
+@inject HttpClient http
+@inject NavigationManager Navigation
+
+<h3>Enter your Pokemon's Information!</h3>
+
+<EditForm Model="@pokemon" OnValidSubmit="@HandleValidSubmit" FormName="pokemon_fluent_entry" novalidate>
+    <DataAnnotationsValidator />
+    <FluentValidationSummary />
+
+    <FluentStack Orientation="Orientation.Vertical">
+        <div>
+            <FluentTextField Name="pokemonName" @bind-Value="pokemon.PokemonName" Label="PokemonName" Required />
+            <FluentValidationMessage For="@(() => pokemon.PokemonName)" />
+        </div>
+        <div>
+            <FluentNumberField Name="dexNumber" Rows=1 Cols="1" @bind-Value="pokemon.DexNumber" Label="DexNumber" Required />
+        </div>
+        <div>
+            <FluentSelect Items=@types
+                          OptionText="@(i => i.TypeName)"
+                          OptionValue="@(i => i.TypeName)"
+                          @bind-Value="@pokemon.Type1" />
+            <FluentSelect Items=@types
+                          OptionText="@(i => i.TypeName)"
+                          OptionValue="@(i => i.TypeName)"
+                          @bind-Value="@pokemon.Type2" />
+        </div>
+        <div>
+            <FluentNumberField Name="genNumber" Rows=1 Cols="1" @bind-Value="pokemon.Generation" Label="GenNumber" Required />
+        </div>
+        <FluentButton Type="ButtonType.Submit" OnClick="@(() => Navigation.NavigateTo($"discovered"))" Appearance="Appearance.Accent">Submit</FluentButton>
+    </FluentStack>
+
+</EditForm>
+
+@code {
+
+    IQueryable<TypeViewModel> types { get; set; }
+
+    IQueryable<GenerationTypeModel> generations { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        types = (await http.GetFromJsonAsync<List<TypeViewModel>>("/api/types")).AsQueryable();
+        generations = (await http.GetFromJsonAsync<List<GenerationTypeModel>>("/api/generations")).AsQueryable();
+    }
+
+    [SupplyParameterFromForm]
+    public PokemonViewModel pokemon { get; set; } = new();
+
+
+
+    private async Task HandleValidSubmit()
+    {
+        await http.PostAsJsonAsync($"/api/pokemon", pokemon);
+    }
+    
+}

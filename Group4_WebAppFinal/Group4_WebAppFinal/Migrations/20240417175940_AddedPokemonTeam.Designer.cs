@@ -4,6 +4,7 @@ using Group4_WebAppFinal.Controllers.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group4_WebAppFinal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240417175940_AddedPokemonTeam")]
+    partial class AddedPokemonTeam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,15 +45,6 @@ namespace Group4_WebAppFinal.Migrations
                     b.HasKey("ItemName");
 
                     b.ToTable("Bags");
-
-                    b.HasData(
-                        new
-                        {
-                            ItemName = "Potion",
-                            Description = "Restores 10HP",
-                            ItemQuantity = 1,
-                            ItemType = "Consumable"
-                        });
                 });
 
             modelBuilder.Entity("Group4_WebAppFinal.Controllers.Entities.Generation", b =>
@@ -185,10 +179,6 @@ namespace Group4_WebAppFinal.Migrations
                     b.ToTable("PokemonTypes");
 
                     b.HasData(
-                        new
-                        {
-                            TypeName = "None"
-                        },
                         new
                         {
                             TypeName = "Normal"
