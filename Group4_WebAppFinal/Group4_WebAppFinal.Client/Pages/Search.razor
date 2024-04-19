@@ -1,10 +1,35 @@
 ﻿@page "/search"
-
+@using Group4_WebAppFinal.Model
+@inject HttpClient httpSearch
 
 <PageTitle>Search</PageTitle>
 
 <h1>Search</h1>
 
-@code {
+<form>
+    <p>
+        Search here: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
+<FluentDataGrid Items="@team">
+    <PropertyColumn Property="@(p => p.PokemonName)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.DexNumber)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Type1)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Type2)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.PokemonTypes)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Generation)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.TeamNum)" Sortable="true" />
+</FluentDataGrid>
+
+@code {
+    string? value1, value2, value3, value4, value5, value6, value7;
+
+    IQueryable<PokemonViewModel> team { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        team = (await httpSearch.GetFromJsonAsync<List<PokemonViewModel>>("/api/item")).AsQueryable();
+    }
 }
