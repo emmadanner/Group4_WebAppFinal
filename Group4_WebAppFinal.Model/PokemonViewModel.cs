@@ -10,9 +10,9 @@ namespace Group4_WebAppFinal.Model
     public class PokemonViewModel
     {
         [Key]
+        public int DexNumberID { get; set; }
         public  string PokemonName { get; set; }
 
-        public int DexNumber { get; set; }
         [MaxLength(100)]
         public  string Type1 { get; set; }
 
@@ -20,12 +20,6 @@ namespace Group4_WebAppFinal.Model
         public string? Type2 { get; set; }
 
         public ICollection<TypeViewModel> PokemonTypes { get; set; } = new List<TypeViewModel>();
-        public  int Generation { get; set; }
-
-        public int? TeamNum { get; set; }
-
-        
-
 
     }
 }

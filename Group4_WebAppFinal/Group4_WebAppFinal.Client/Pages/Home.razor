@@ -8,23 +8,21 @@
 
 <b>Your Pokémon Team:</b>
 
-<FluentDataGrid Items="@team">
+<FluentDataGrid Items="@pokemon">
+    <PropertyColumn Property="@(p => p.DexNumberID)" Sortable="true" />
     <PropertyColumn Property="@(p => p.PokemonName)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.DexNumber)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Type1)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Type2)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.PokemonTypes)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.Generation)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.TeamNum)" Sortable="true" />
+
 </FluentDataGrid>
 
 @code {
     string? value1, value2, value3, value4, value5, value6, value7;
 
-    IQueryable<PokemonViewModel> team { get; set; }
+    IQueryable<PokemonViewModel> pokemon { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
-        team = (await httpHome.GetFromJsonAsync<List<PokemonViewModel>>("/api/item")).AsQueryable();
+        pokemon = (await httpHome.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
     }
 }

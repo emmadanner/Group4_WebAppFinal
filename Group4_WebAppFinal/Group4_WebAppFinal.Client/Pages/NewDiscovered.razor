@@ -15,7 +15,7 @@
             <FluentValidationMessage For="@(() => pokemon.PokemonName)" />
         </div>
         <div>
-            <FluentNumberField Name="dexNumber" Rows=1 Cols="1" @bind-Value="pokemon.DexNumber" Label="DexNumber" Required />
+            <FluentNumberField Name="dexNumber" Rows=1 Cols="1" @bind-Value="pokemon.DexNumberID" Label="DexNumberID" Required />
         </div>
         <div>
             <FluentSelect Items=@types
@@ -26,9 +26,6 @@
                           OptionText="@(i => i.TypeName)"
                           OptionValue="@(i => i.TypeName)"
                           @bind-Value="@pokemon.Type2" />
-        </div>
-        <div>
-            <FluentNumberField Name="genNumber" Rows=1 Cols="1" @bind-Value="pokemon.Generation" Label="GenNumber" Required />
         </div>
         <FluentButton Type="ButtonType.Submit" OnClick="@(() => Navigation.NavigateTo($"discovered"))" Appearance="Appearance.Accent">Submit</FluentButton>
     </FluentStack>
