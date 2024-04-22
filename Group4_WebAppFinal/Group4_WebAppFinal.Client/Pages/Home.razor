@@ -24,5 +24,6 @@
     protected override async Task OnParametersSetAsync()
     {
         pokemon = (await httpHome.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
+        await InvokeAsync(StateHasChanged);
     }
 }

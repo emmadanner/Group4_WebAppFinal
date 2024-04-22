@@ -26,11 +26,13 @@
 
     IQueryable<PokemonViewModel> pokemons { get; set; }
 
-    
+
 
     protected override async Task OnParametersSetAsync()
     {
+
         pokemons = (await httpDiscover.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
+        await InvokeAsync(StateHasChanged);
     }
 
     Dictionary<string, object> Attributes { get; set; } = new()

@@ -15,17 +15,7 @@
             <FluentValidationMessage For="@(() => pokemon.PokemonName)" />
         </div>
         <div>
-            <FluentNumberField Name="dexNumber" Rows=1 Cols="1" @bind-Value="pokemon.DexNumberID" Label="DexNumberID" Required />
-        </div>
-        <div>
-            <FluentSelect Items=@types
-                          OptionText="@(i => i.TypeName)"
-                          OptionValue="@(i => i.TypeName)"
-                          @bind-Value="@pokemon.Type1" />
-            <FluentSelect Items=@types
-                          OptionText="@(i => i.TypeName)"
-                          OptionValue="@(i => i.TypeName)"
-                          @bind-Value="@pokemon.Type2" />
+            <FluentTextField Name="Type1" @bind-Value="pokemon.Type1" Label="Type1" Required />
         </div>
         <FluentButton Type="ButtonType.Submit" OnClick="@(() => Navigation.NavigateTo($"discovered"))" Appearance="Appearance.Accent">Submit</FluentButton>
     </FluentStack>
@@ -34,24 +24,20 @@
 
 @code {
 
-    IQueryable<TypeViewModel> types { get; set; }
+    // IQueryable<TypeViewModel> types { get; set; }
 
-    IQueryable<GenerationTypeModel> generations { get; set; }
+    // protected override async Task OnParametersSetAsync()
+    // {
+    //     types = (await http.GetFromJsonAsync<List<TypeViewModel>>("/api/types")).AsQueryable();
+    // }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        types = (await http.GetFromJsonAsync<List<TypeViewModel>>("/api/types")).AsQueryable();
-        generations = (await http.GetFromJsonAsync<List<GenerationTypeModel>>("/api/generations")).AsQueryable();
-    }
-
-    [SupplyParameterFromForm]
     public PokemonViewModel pokemon { get; set; } = new();
 
 
 
     private async Task HandleValidSubmit()
     {
-        await http.PostAsJsonAsync($"/api/pokemon", pokemon);
+        await http.PostAsJsonAsync("/api/pokemon/", pokemon);
     }
     
 }
