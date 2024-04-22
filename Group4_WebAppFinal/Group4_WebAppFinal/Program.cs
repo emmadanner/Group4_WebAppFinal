@@ -60,8 +60,8 @@ app.MapGet("/api/pokemon", async (ApplicationDbContext dbContext) =>
     {
         pokemonViewModels.Add(new PokemonViewModel
         {
-            PokemonName = pokemon.PokemonName,
             DexNumberID = pokemon.DexNumberID,
+            PokemonName = pokemon.PokemonName,
             Type1 = pokemon.Type1,
             Type2 = pokemon.Type2,
         });
@@ -70,9 +70,9 @@ app.MapGet("/api/pokemon", async (ApplicationDbContext dbContext) =>
     return Results.Ok(pokemons);
 });
 
-app.MapGet("/api/pokemon/{id}", async (ApplicationDbContext dbContext, int id) =>
+app.MapGet("/api/pokemon/{DexNumberID}", async (ApplicationDbContext dbContext, int DexNumberID) =>
 {
-    var pokemon = await dbContext.Pokemons.FindAsync(id);
+    var pokemon = await dbContext.Pokemons.FindAsync(DexNumberID);
     if (pokemon == null)
     {
         return Results.NotFound();
@@ -80,8 +80,8 @@ app.MapGet("/api/pokemon/{id}", async (ApplicationDbContext dbContext, int id) =
 
     PokemonViewModel pokemonViewModel = new()
     {
-        PokemonName = pokemon.PokemonName,
         DexNumberID = pokemon.DexNumberID,
+        PokemonName = pokemon.PokemonName,
         Type1 = pokemon.Type1,
         Type2 = pokemon.Type2,
     };
@@ -91,90 +91,17 @@ app.MapGet("/api/pokemon/{id}", async (ApplicationDbContext dbContext, int id) =
 
 app.MapPost("/api/pokemon", async (ApplicationDbContext dbContext, PokemonViewModel pokemonViewModel) =>
 {
-
     Pokemon pokemon = new()
     {
-        PokemonName = pokemonViewModel.PokemonName,
         DexNumberID = pokemonViewModel.DexNumberID,
+        PokemonName = pokemonViewModel.PokemonName,
         Type1 = pokemonViewModel.Type1,
         Type2 = pokemonViewModel.Type2,
     };
 
     await dbContext.Pokemons.AddAsync(pokemon);
     await dbContext.SaveChangesAsync();
-    return Results.Created($"/api/pokemon/{pokemon.PokemonName}", pokemon);
+    return Results.Created($"/api/pokemon/{pokemon.DexNumberID}", pokemon);
 });
-
-app.MapPut("/api/pokemon/{id}", async (ApplicationDbContext dbContext, int id, PokemonViewModel pokemonViewModel) =>
-{
-    var pokemon = await dbContext.Pokemons.FindAsync(id);
-    if (pokemon == null)
-    {
-        return Results.NotFound();
-    }
-
-    pokemon.PokemonName = pokemonViewModel.PokemonName;
-    pokemon.DexNumberID = pokemonViewModel.DexNumberID;
-    pokemon.Type1 = pokemonViewModel.Type1;
-    pokemon.Type2 = pokemonViewModel.Type2;
-
-    await dbContext.SaveChangesAsync();
-    return Results.Ok(pokemon);
-});
-
-
-
-app.MapDelete("/api/pokemon/{id}", async (ApplicationDbContext dbContext, int id) =>
-{
-    var pokemon = await dbContext.Pokemons.FindAsync(id);
-    if (pokemon == null)
-    {
-        return Results.NotFound();
-    }
-
-    dbContext.Pokemons.Remove(pokemon);
-    await dbContext.SaveChangesAsync();
-    return Results.Ok();
-});
-
-app.MapGet("/api/item", async (ApplicationDbContext dbContext) =>
-{
-    var items = await dbContext.Bags.ToListAsync();
-
-    List<ItemViewModel> itemViewModels = new();
-
-    foreach (var item in items)
-    {
-        itemViewModels.Add(new ItemViewModel
-        {
-            ItemName = item.ItemName,
-            ItemQuantity = item.ItemQuantity,
-            ItemType = item.ItemType,
-            Description = item.Description
-
-        });
-    }
-
-    return Results.Ok(items);
-});
-
-app.MapGet("/api/types", async (ApplicationDbContext dbContext) =>
-{
-    var typings = await dbContext.PokemonTypes.ToListAsync();
-
-    List<TypeViewModel> typeViewModels = new();
-
-    foreach (var typing in typings)
-    {
-        typeViewModels.Add(new TypeViewModel
-        {
-            TypeName = typing.TypeName
-
-        });
-    }
-
-    return Results.Ok(typings);
-});
-
 
 app.Run();
