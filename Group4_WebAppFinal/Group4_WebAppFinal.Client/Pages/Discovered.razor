@@ -15,7 +15,7 @@
     <PropertyColumn Property="@(p => p.Type1)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Type2)" Sortable="true" />
     <TemplateColumn>
-        <FluentButton OnClick="@(() => Navigation.NavigateTo($"discovered/release/{context.PokemonName}"))">Release</FluentButton>
+        <FluentButton OnClick="@(() => Navigation.NavigateTo($"discovered/release/{context.DexNumberID}"))">Release</FluentButton>
     </TemplateColumn>
 </FluentDataGrid>
 
@@ -32,7 +32,6 @@
     {
 
         pokemons = (await httpDiscover.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
-        await InvokeAsync(StateHasChanged);
     }
 
     Dictionary<string, object> Attributes { get; set; } = new()

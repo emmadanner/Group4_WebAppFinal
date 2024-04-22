@@ -5,8 +5,9 @@
 <PageTitle>Home</PageTitle>
 
 <h1>Pokédex</h1>
-
-<b>Your Pokémon Team:</b>
+<b> Please visit the "Discovered" page to add more Pokemon to your collection!</b>
+<p></p>
+<b>Your Pokemon:</b>
 
 <FluentDataGrid Items="@pokemon">
     <PropertyColumn Property="@(p => p.DexNumberID)" Sortable="true" />
@@ -24,6 +25,5 @@
     protected override async Task OnParametersSetAsync()
     {
         pokemon = (await httpHome.GetFromJsonAsync<List<PokemonViewModel>>("/api/pokemon")).AsQueryable();
-        await InvokeAsync(StateHasChanged);
     }
 }

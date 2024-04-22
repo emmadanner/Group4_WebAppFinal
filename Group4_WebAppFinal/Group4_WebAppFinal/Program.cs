@@ -104,4 +104,17 @@ app.MapPost("/api/pokemon", async (ApplicationDbContext dbContext, PokemonViewMo
     return Results.Created($"/api/pokemon/{pokemon.DexNumberID}", pokemon);
 });
 
+app.MapDelete("/api/pokemon/{DexNumberID}", async (ApplicationDbContext dbContext, int DexNumberID) =>
+{
+    var pokemon = await dbContext.Pokemons.FindAsync(DexNumberID);
+    if (pokemon == null)
+    {
+        return Results.NotFound();
+    }
+
+    dbContext.Pokemons.Remove(pokemon);
+    await dbContext.SaveChangesAsync();
+    return Results.Ok();
+});
+
 app.Run();

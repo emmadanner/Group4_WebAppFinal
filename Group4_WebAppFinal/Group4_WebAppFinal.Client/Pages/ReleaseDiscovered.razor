@@ -1,24 +1,24 @@
-﻿@page "/discovered/release/{PokemonName}"
+﻿@page "/discovered/release/{DexNumberID}"
 @using Group4_WebAppFinal.Model
 @inject HttpClient http
 @inject NavigationManager Navigation
 
 <h3>Are you sure you want to Release this Pokemon?</h3>
 
-<FluentButton OnClick="@(() => ReleasePokemon(PokemonName))" Appearance="Appearance.Accent">Yes!</FluentButton>
+<FluentButton OnClick="@(() => ReleasePokemon(DexNumberID))" Appearance="Appearance.Accent">Yes!</FluentButton>
 
 <FluentButton OnClick="@(() => Navigation.NavigateTo($"/discovered"))" Appearance="Appearance.Accent">No!</FluentButton>
 
 @code {
     [Parameter]
-    public string PokemonName { get; set; }
+    public string DexNumberID { get; set; }
 
     
     public PokemonViewModel pokemon { get; set; } = new();
 
-    private async Task ReleasePokemon(string PokemonName)
+    private async Task ReleasePokemon(string DexNumberID)
     {
-        await http.DeleteAsync($"/api/pokemon/{PokemonName}");
+        await http.DeleteAsync($"/api/pokemon/{DexNumberID}");
 
         Navigation.NavigateTo($"/discovered");
     }

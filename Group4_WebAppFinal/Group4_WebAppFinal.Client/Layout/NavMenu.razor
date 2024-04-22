@@ -5,9 +5,9 @@
     <nav class="sitenav" aria-labelledby="main-menu" onclick="document.getElementById('navmenu-toggle').click();">
         <FluentNavMenu Id="main-menu" Width="250" Collapsible="true" Title="Navigation menu" @bind-Expanded="expanded">
             <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())" IconColor="Color.Accent">Home</FluentNavLink>
+            <FluentNavLink Href="/discovered" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.BookGlobe())" IconColor="Color.Accent">Discovered</FluentNavLink>
             <FluentNavLink Href="/teamselect" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Backpack())" IconColor="Color.Accent">Team Select</FluentNavLink>
             <FluentNavLink Href="/items" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Backpack())" IconColor="Color.Accent">Item Bag</FluentNavLink>
-            <FluentNavLink Href="/discovered" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.BookGlobe())" IconColor="Color.Accent">Discovered</FluentNavLink>
         </FluentNavMenu>
     </nav>
 </div>

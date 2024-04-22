@@ -16,8 +16,9 @@
         </div>
         <div>
             <FluentTextField Name="Type1" @bind-Value="pokemon.Type1" Label="Type1" Required />
+            <FluentTextField Name="Type2" @bind-Value="pokemon.Type2" Label="Type2" />
         </div>
-        <FluentButton Type="ButtonType.Submit" OnClick="@(() => Navigation.NavigateTo($"discovered"))" Appearance="Appearance.Accent">Submit</FluentButton>
+        <FluentButton Type="ButtonType.Submit" OnClick="@(() => Navigation.NavigateTo($"/discovered"))" Appearance="Appearance.Accent">Submit</FluentButton>
     </FluentStack>
 
 </EditForm>
@@ -38,6 +39,8 @@
     private async Task HandleValidSubmit()
     {
         await http.PostAsJsonAsync("/api/pokemon/", pokemon);
+
+        Navigation.NavigateTo($"/discovered");
     }
     
 }
