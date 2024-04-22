@@ -5,16 +5,15 @@
 GET {{MinimalApiHost}}/api/pokemon
 
 ###
-GET {{MinimalApiHost}}/api/pokemon/
+GET {{MinimalApiHost}}/api/pokemon/8
 
 ###
-POST {{MinimalApiHost}}/api/pokemon
+POST {{MinimalApiHost}}/api/pokemon/
 Content-Type: application/json
 
 {
-  "pokemonName": "Charmander",
-  "DexNumberID": "500",
-  "type1": "Rock",
-  "type2": "Water"
+  "PokemonName": "Ivysaur",
+  "Type1": "Grass",
+  "Type2": "N/A"
 }
 
