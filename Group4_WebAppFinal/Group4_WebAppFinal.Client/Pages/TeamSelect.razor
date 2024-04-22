@@ -1,5 +1,20 @@
-﻿<h3>TeamSelect</h3>
+﻿@page "/teamselect"
+@using Group4_WebAppFinal
 
-@code {
+<h3>Team Select</h3>
 
+<FluentDataGrid Items="@team">
+    <PropertyColumn Property="@(p => p.TeamId)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Pokemon)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Bag)" Sortable="true" />
+</FluentDataGrid>
+
+@code{
+    record Team(int TeamId, string Pokemon, string Bag);
+
+    IQueryable<Team> team = new[]
+    {
+        new Team(1, "Pikachu", "none"),
+
+    }.AsQueryable();
 }

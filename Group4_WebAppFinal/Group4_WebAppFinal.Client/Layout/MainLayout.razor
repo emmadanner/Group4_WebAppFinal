@@ -8,8 +8,12 @@
         <NavMenu />
         <FluentBodyContent Class="body-content">
             <div class="content">
+                <FluentMessageBarProvider Section="TOP" />
                 @Body
             </div>
+            <FluentToastProvider />
+            <FluentDialogProvider />
+            <FluentTooltipProvider />
         </FluentBodyContent>
     </FluentStack>
     <FluentFooter>
